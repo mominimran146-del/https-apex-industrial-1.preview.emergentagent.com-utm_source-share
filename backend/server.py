@@ -336,19 +336,22 @@ async def delete_proposal(proposal_id: str, admin: dict = Depends(get_admin_user
 
 @api_router.get("/admin/customers")
 async def admin_customers(admin: dict = Depends(get_admin_user)):
-    users = await db.users.find({"role": "customer"}, {"_id": 0, "password_hash": 0}).to_list(2000)
-    result = []
-    for u in users:
-        props = await db.proposals.find({"user_id": u["id"]}, {"_id": 0}).to_list(1000)
-        total_spent = sum(p.get("amount", 0) or 0 for p in props)
-        result.append({
-            **u,
-            "order_count": len(props),
-            "total_spent": total_spent,
-            "type": "repeat" if len(props) > 1 else "new",
-        })
-    # also include guest emails from proposals without accounts
-    return result
+    pipeline = [
+        {"$match": {"role": "customer"}},
+        {"$lookup": {
+            "from": "proposals",
+            "localField": "id",
+            "foreignField": "user_id",
+            "as": "_props",
+        }},
+        {"$addFields": {
+            "order_count": {"$size": "$_props"},
+            "total_spent": {"$sum": "$_props.amount"},
+            "type": {"$cond": [{"$gt": [{"$size": "$_props"}, 1]}, "repeat", "new"]},
+        }},
+        {"$project": {"_id": 0, "password_hash": 0, "_props": 0}},
+    ]
+    return await db.users.aggregate(pipeline).to_list(5000)
 
 
 @api_router.get("/admin/contacts")
@@ -379,10 +382,12 @@ async def admin_analytics(admin: dict = Depends(get_admin_user)):
         key=lambda x: x["count"], reverse=True
     )[:6]
     customer_count = await db.users.count_documents({"role": "customer"})
-    repeat = 0
-    for uid in await db.proposals.distinct("user_id"):
-        if uid and await db.proposals.count_documents({"user_id": uid}) > 1:
-            repeat += 1
+    repeat_agg = await db.proposals.aggregate([
+        {"$group": {"_id": "$user_id", "count": {"$sum": 1}}},
+        {"$match": {"_id": {"$ne": None}, "count": {"$gt": 1}}},
+        {"$count": "repeat"},
+    ]).to_list(1)
+    repeat = repeat_agg[0]["repeat"] if repeat_agg else 0
     monthly_list = sorted(monthly.values(), key=lambda x: x["month"])
     return {
         "total_revenue": total_revenue,
