@@ -1,0 +1,168 @@
+{
+  "project_name": "Apex Industrial Engineering Solutions",
+  "theme_and_archetype": {
+    "theme": "LIGHT",
+    "archetype": "Archetype 4 (Swiss & High-Contrast)",
+    "description": "Authority, Clarity, Truth. Objective, rigid, and functional. Represents a highly capable 17-year experienced engineering consultancy.",
+    "vibe": "Industrial precision, architectural blueprints, crisp technical documentation, engineering logic."
+  },
+  "typography": {
+    "fonts": {
+      "headings": "Cabinet Grotesk",
+      "body": "IBM Plex Sans",
+      "mono": "JetBrains Mono"
+    },
+    "scale": {
+      "h1": "text-4xl sm:text-5xl lg:text-6xl tracking-tighter leading-none font-black",
+      "h2": "text-2xl sm:text-3xl lg:text-4xl tracking-tight leading-none font-bold",
+      "h3": "text-xl sm:text-2xl tracking-tight font-semibold",
+      "h4": "text-lg sm:text-xl font-medium",
+      "body": "text-base leading-relaxed",
+      "small_labels": "text-xs tracking-[0.2em] uppercase font-bold"
+    },
+    "rules": [
+      "Never use Inter, Roboto, or Open Sans for headings.",
+      "Headlines > 32px MUST use tracking-tight or tracking-tighter.",
+      "Overlines/Labels MUST be Uppercase + Tiny + Wide Spacing.",
+      "Hierarchy gap must not exceed 2 Tailwind steps between headings and subheadings."
+    ]
+  },
+  "colors": {
+    "palette": {
+      "base": {
+        "background": "#F9FAFB",
+        "surface": "#FFFFFF",
+        "border": "#E5E7EB"
+      },
+      "text": {
+        "primary": "#0F172A",
+        "secondary": "#475569",
+        "muted": "#94A3B8"
+      },
+      "brand": {
+        "primary": "#0A369D",
+        "accent": "#FF4F00",
+        "warning": "#EAB308",
+        "success": "#22C55E"
+      }
+    },
+    "rules": [
+      "No generic full-screen gradients. Use solid stark colors.",
+      "95% of the UI should be monochrome (Base and Text colors). Color exists only to guide action.",
+      "Use #FF4F00 (Signal Orange) for primary CTAs like 'Order Now' and high-visibility warnings.",
+      "Tinted Grey Rule: Greys have a cool blue tint to match the industrial/technical feel.",
+      "Ensure minimum 4.5:1 contrast for normal text."
+    ]
+  },
+  "layout_and_spacing": {
+    "spacing_scale": "p-1, p-2, p-4, p-6, p-8, p-12, p-16, p-20, p-24, p-32",
+    "grids": {
+      "marketing": {
+        "type": "The 'Tetris' Grid",
+        "classes": "grid grid-cols-1 md:grid-cols-8 lg:grid-cols-12 gap-8 lg:gap-12",
+        "logic": "Asymmetry, Visual Tension. Do not fill 100% of the grid perfectly."
+      },
+      "dashboard": {
+        "type": "The 'Control Room' Grid",
+        "classes": "grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6",
+        "logic": "Every pixel utilized. h-full on children. Dense, data correlation."
+      }
+    },
+    "surface_strategies": [
+      {
+        "name": "Grid Borders (The Technical Look)",
+        "use_for": "Feature grids, Services, Footer",
+        "classes": "border-collapse, border-r border-b border-slate-200"
+      },
+      {
+        "name": "Solid Background Header",
+        "use_for": "Navigation",
+        "classes": "bg-white/95 backdrop-blur border-b border-slate-200"
+      },
+      {
+        "name": "Dashboard Cards",
+        "use_for": "Admin Widgets",
+        "classes": "bg-white border border-slate-200 rounded-none shadow-sm"
+      }
+    ]
+  },
+  "components_strategy": {
+    "marketing_pages": {
+      "structure": "Pure HTML + Tailwind CSS. Raw divs for overlapping and asymmetry.",
+      "forms": "Shadcn components heavily customized.",
+      "hero_overlay": "bg-slate-900/40 for dark overlays if text is over image, ensuring technical precision.",
+      "cards": "Avoid generic rounded cards. Use sharp, brutalist, grid-bordered boxes (border-collapse)."
+    },
+    "dashboard_pages": {
+      "structure": "Shadcn UI components. Use pure rectangular cards (rounded-none or max rounded-sm).",
+      "charts": "Shadcn chart components (Recharts).",
+      "density": "High density, no extra fluff. Pure function."
+    },
+    "icons": {
+      "library": "Phosphor Icons (@phosphor-icons/react)",
+      "style": "Duotone or Regular weight for technical crispness."
+    }
+  },
+  "images_and_media": {
+    "rules": [
+      "No placeholder URLs. Use exact URLs provided.",
+      "Mobile images max-h-[80vh].",
+      "If text is placed over an image, use text-shadow or a gradient overlay for contrast."
+    ],
+    "assets": {
+      "hero_bg": {
+        "url": "https://images.pexels.com/photos/34207359/pexels-photo-34207359.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "description": "Yellow industrial robotic arm in action. Ideal for the hero section background highlighting automation."
+      },
+      "service_mechanical_cad": {
+        "url": "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2ODh8MHwxfHNlYXJjaHwxfHxtZWNoYW5pY2FsJTIwQ0FEJTIwZGVzaWdufGVufDB8fHx8MTc4MTg3MDkwOXww&ixlib=rb-4.1.0&q=85",
+        "description": "CAD design workstation for Mechanical Design & Drafting service."
+      },
+      "service_conveyors": {
+        "url": "https://images.pexels.com/photos/11679684/pexels-photo-11679684.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "description": "Industrial conveyor belt system for Material Handling Conveyor Design."
+      },
+      "service_pipeline_hydro": {
+        "url": "https://images.pexels.com/photos/17728787/pexels-photo-17728787.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "description": "Industrial pipeline valves for Pneumatic pressure & Hydro Testing service."
+      },
+      "service_digital_dashboards": {
+        "url": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDQ2NDN8MHwxfHNlYXJjaHwxfHxkYXRhJTIwYW5hbHl0aWNzJTIwZGFzaGJvYXJkJTIwc2NyZWVufGVufDB8fHx8MTc4MTg3MDkwOXww&ixlib=rb-4.1.0&q=85",
+        "description": "Data analytics dashboard for Advanced Excel Dashboards & Reporting service."
+      }
+    }
+  },
+  "motion_and_interactions": {
+    "hover_states": "Hover state must be a lighter hue. focus:ring-2 focus:ring-orange-500",
+    "transitions": "transition-all duration-200 ease-out",
+    "entrances": "Staggered fade-up for grid items. Minimalist."
+  },
+  "accessibility_and_testing": {
+    "contrast": "Ensure APCA/WCAG AA minimums. White text on Orange CTA buttons must have sufficient contrast or use very dark text.",
+    "testing_attributes": "All interactive/key elements MUST have data-testid (e.g., data-testid=\"order-now-btn\", data-testid=\"service-card-cad\").",
+    "motion": "Respect prefers-reduced-motion."
+  },
+  "page_specific_instructions": {
+    "Marketing_Home": {
+      "hero": "Bold typography, stark technical grid lines over the robotic arm image. Use the 'Grid Borders' layout for the services showcase.",
+      "expertise_grid": "Use a bento box/Tetris grid. Mix large case studies with small data points (17 Years Experience, Jira Management).",
+      "cta": "Massive 'Request Proposal' / 'Order Now' section with stark #FF4F00 background and #F9FAFB text."
+    },
+    "Dashboard_Admin": {
+      "layout": "Left sidebar for navigation. Top metrics (Sales, Top Services) using the 'Control Room' dense grid.",
+      "tables": "Data dense tables for Project Management and Customer Management. Use pure Shadcn Table.",
+      "export": "Include an 'Export to Excel' action in the top right of data tables."
+    },
+    "Customer_Portal": {
+      "layout": "Clean, focused forms for Proposal Requests. Cart-like service selection using Shadcn checkboxes/cards."
+    }
+  },
+  "instructions_to_main_agent": [
+    "Install required dependencies: yarn add @phosphor-icons/react lucide-react clsx tailwind-merge framer-motion",
+    "Do NOT use HTML inputs for complex forms. Use Shadcn components.",
+    "Implement the font imports for Cabinet Grotesk and IBM Plex Sans in the global CSS or index.html.",
+    "Follow the exact Grid specifications for marketing vs dashboard.",
+    "Apply all provided Image URLs strictly in their corresponding sections.",
+    "Apply data-testid to every button and form input."
+  ]
+}
