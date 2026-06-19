@@ -86,11 +86,7 @@ export default function ServicesPage() {
                       <span key={fi} className="text-[11px] bg-slate-100 text-slate-600 px-2 py-1">{f}</span>
                     ))}
                   </div>
-                  <div className="flex items-center justify-between mt-5 pt-5 border-t border-slate-100">
-                    <div>
-                      <span className="text-[10px] tracking-wider uppercase text-slate-400 block">From</span>
-                      <span className="font-heading font-black text-slate-900">₹{s.price_from?.toLocaleString("en-IN")}</span>
-                    </div>
+                  <div className="flex items-center justify-end mt-5 pt-5 border-t border-slate-100">
                     {inCart(s.slug) ? (
                       <Button onClick={() => navigate("/request")} variant="outline" className="rounded-none border-signal text-signal gap-1.5" data-testid={`service-incart-${i}`}>
                         <Check className="h-4 w-4" /> Added

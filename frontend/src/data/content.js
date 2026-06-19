@@ -69,11 +69,25 @@ export const PROJECTS = [
       "https://images.pexels.com/photos/11679684/pexels-photo-11679684.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
   },
   {
-    title: "Pump & Valve Datasheet Preparation",
+    title: "Equipment Datasheets & Specifications",
     category: "Documentation",
-    desc: "Prepared technical datasheets and engineering documentation for industrial fluid handling systems.",
+    desc: "Prepared technical datasheets and detailed specifications for industrial equipment including pumps, valves and compressors.",
     image:
-      "https://images.pexels.com/photos/17728787/pexels-photo-17728787.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "https://images.unsplash.com/photo-1721244654392-9c912a6eb236?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzMzJ8MHwxfHNlYXJjaHwyfHxlbmdpbmVlcmluZyUyMHRlY2huaWNhbCUyMGRvY3VtZW50YXRpb24lMjBibHVlcHJpbnR8ZW58MHx8fHwxNzgxODcwOTk3fDA&ixlib=rb-4.1.0&q=85",
+  },
+  {
+    title: "Detailed Engineering with Manufacturing Drawings",
+    category: "Mechanical Design",
+    desc: "Delivered detailed engineering packages with complete manufacturing, fabrication and assembly drawings ready for the shop floor.",
+    image:
+      "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2ODh8MHwxfHNlYXJjaHwxfHxtZWNoYW5pY2FsJTIwQ0FEJTIwZGVzaWdufGVufDB8fHx8MTc4MTg3MDkwOXww&ixlib=rb-4.1.0&q=85",
+  },
+  {
+    title: "Project Management Services",
+    category: "Management",
+    desc: "Provided engineering project management and coordination — planning, tracking and delivery using Jira and structured workflows.",
+    image:
+      "https://images.pexels.com/photos/7376/startup-photos.jpg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
   },
   {
     title: "Pressure & Hydro Testing Documentation",

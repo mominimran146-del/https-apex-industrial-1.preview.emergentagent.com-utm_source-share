@@ -86,9 +86,9 @@ export default function Navbar() {
                 </Button>
               </Link>
             )}
-            <Link to="/request" data-testid="nav-order-now">
+            <Link to="/request" data-testid="nav-request-proposal">
               <Button className="rounded-none bg-signal hover:bg-signal/90 text-white font-semibold tracking-wide">
-                Order Now
+                Request for Proposal
               </Button>
             </Link>
           </div>
@@ -133,7 +133,7 @@ export default function Navbar() {
               </Link>
             )}
             <Link to="/request" onClick={() => setOpen(false)}>
-              <Button className="w-full rounded-none bg-signal hover:bg-signal/90 text-white">Order Now</Button>
+              <Button className="w-full rounded-none bg-signal hover:bg-signal/90 text-white">Request for Proposal</Button>
             </Link>
           </div>
         </div>

@@ -116,7 +116,6 @@ export default function RequestProposal() {
                     <div className="flex-1">
                       <div className="text-[10px] tracking-wider uppercase text-slate-400 font-bold">{it.category}</div>
                       <div className="font-medium text-slate-900">{it.title}</div>
-                      <div className="text-sm text-slate-500 font-mono">₹{it.price_from?.toLocaleString("en-IN")} base</div>
                     </div>
                     <div className="flex items-center border border-slate-300">
                       <button type="button" onClick={() => setQuantity(it.service_slug, it.quantity - 1)} className="px-2 py-1.5 hover:bg-slate-100" data-testid={`cart-dec-${i}`}>
@@ -134,14 +133,8 @@ export default function RequestProposal() {
                 ))}
               </div>
             )}
-            {items.length > 0 && (
-              <div className="px-6 py-4 border-t border-slate-200 flex items-center justify-between bg-slate-50">
-                <span className="text-sm text-slate-600">Estimated starting total</span>
-                <span className="font-heading text-xl font-black text-slate-900" data-testid="cart-total">₹{estTotal.toLocaleString("en-IN")}</span>
-              </div>
-            )}
           </div>
-          <p className="text-xs text-slate-400 mt-3">* Final quote provided after we review your requirements.</p>
+          <p className="text-xs text-slate-400 mt-3">* A tailored quote is provided after we review your requirements.</p>
         </div>
 
         {/* Form */}

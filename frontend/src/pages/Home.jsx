@@ -48,9 +48,9 @@ export default function Home() {
               automation — delivered remotely to industries worldwide.
             </p>
             <div className="mt-9 flex flex-col sm:flex-row gap-3">
-              <Link to="/request" data-testid="hero-order-now">
+              <Link to="/request" data-testid="hero-request-proposal">
                 <Button className="rounded-none bg-signal hover:bg-signal/90 text-white font-semibold h-12 px-8 text-base gap-2 w-full sm:w-auto">
-                  Order Now <ArrowRight className="h-4 w-4" />
+                  Request for Proposal <ArrowRight className="h-4 w-4" />
                 </Button>
               </Link>
               <Link to="/services" data-testid="hero-explore-services">
