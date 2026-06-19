@@ -236,12 +236,12 @@ async def list_services(category: Optional[str] = None):
 
 @api_router.get("/services/categories")
 async def list_categories():
-    cats = await db.services.distinct("category", {"active": True})
-    result = []
-    for c in cats:
-        sample = await db.services.find_one({"category": c}, {"_id": 0})
-        result.append({"category": c, "image": sample.get("image", "") if sample else ""})
-    return result
+    pipeline = [
+        {"$match": {"active": True}},
+        {"$group": {"_id": "$category", "image": {"$first": "$image"}}},
+        {"$project": {"_id": 0, "category": "$_id", "image": 1}},
+    ]
+    return await db.services.aggregate(pipeline).to_list(100)
 
 
 @api_router.post("/contact")
