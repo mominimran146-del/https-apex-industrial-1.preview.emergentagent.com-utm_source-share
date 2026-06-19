@@ -1,54 +1,82 @@
-import { useEffect } from "react";
 import "@/App.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import axios from "axios";
-import { HOME } from "@/constants/testIds";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { useEffect } from "react";
+import { AuthProvider } from "@/context/AuthContext";
+import { CartProvider } from "@/context/CartContext";
+import { Toaster } from "@/components/ui/sonner";
+import Navbar from "@/components/site/Navbar";
+import Footer from "@/components/site/Footer";
+import ProtectedRoute from "@/components/ProtectedRoute";
 
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
-const API = `${BACKEND_URL}/api`;
+import Home from "@/pages/Home";
+import ServicesPage from "@/pages/ServicesPage";
+import ProjectsPage from "@/pages/ProjectsPage";
+import ContactPage from "@/pages/ContactPage";
+import RequestProposal from "@/pages/RequestProposal";
+import AuthPage from "@/pages/AuthPage";
+import CustomerDashboard from "@/pages/CustomerDashboard";
+import AdminLayout from "@/pages/admin/AdminLayout";
+import AdminOverview from "@/pages/admin/AdminOverview";
+import AdminProjects from "@/pages/admin/AdminProjects";
+import AdminCustomers from "@/pages/admin/AdminCustomers";
+import AdminServices from "@/pages/admin/AdminServices";
 
-const Home = () => {
-  const helloWorldApi = async () => {
-    try {
-      const response = await axios.get(`${API}/`);
-      console.log(response.data.message);
-    } catch (e) {
-      console.error(e, `errored out requesting / api`);
-    }
-  };
+function ScrollToTop() {
+  const { pathname } = useLocation();
+  useEffect(() => window.scrollTo(0, 0), [pathname]);
+  return null;
+}
 
-  useEffect(() => {
-    helloWorldApi();
-  }, []);
-
+function SiteLayout({ children }) {
   return (
-    <div>
-      <header className="App-header">
-        <a
-          data-testid={HOME.emergentLink}
-          className="App-link"
-          href="https://emergent.sh"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <img src="https://avatars.githubusercontent.com/in/1201222?s=120&u=2686cf91179bbafbc7a71bfbc43004cf9ae1acea&v=4" />
-        </a>
-        <p className="mt-5">Building something incredible ~!</p>
-      </header>
-    </div>
+    <>
+      <Navbar />
+      <main>{children}</main>
+      <Footer />
+    </>
   );
-};
+}
 
 function App() {
   return (
     <div className="App">
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Home />}>
-            <Route index element={<Home />} />
-          </Route>
-        </Routes>
-      </BrowserRouter>
+      <AuthProvider>
+        <CartProvider>
+          <BrowserRouter>
+            <ScrollToTop />
+            <Routes>
+              <Route path="/" element={<SiteLayout><Home /></SiteLayout>} />
+              <Route path="/services" element={<SiteLayout><ServicesPage /></SiteLayout>} />
+              <Route path="/projects" element={<SiteLayout><ProjectsPage /></SiteLayout>} />
+              <Route path="/contact" element={<SiteLayout><ContactPage /></SiteLayout>} />
+              <Route path="/request" element={<SiteLayout><RequestProposal /></SiteLayout>} />
+              <Route path="/auth" element={<SiteLayout><AuthPage /></SiteLayout>} />
+              <Route
+                path="/dashboard"
+                element={
+                  <ProtectedRoute>
+                    <SiteLayout><CustomerDashboard /></SiteLayout>
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/admin"
+                element={
+                  <ProtectedRoute requireAdmin>
+                    <AdminLayout />
+                  </ProtectedRoute>
+                }
+              >
+                <Route index element={<AdminOverview />} />
+                <Route path="projects" element={<AdminProjects />} />
+                <Route path="customers" element={<AdminCustomers />} />
+                <Route path="services" element={<AdminServices />} />
+              </Route>
+            </Routes>
+            <Toaster position="top-right" richColors />
+          </BrowserRouter>
+        </CartProvider>
+      </AuthProvider>
     </div>
   );
 }
